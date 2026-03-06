@@ -1,0 +1,45 @@
+package com.example.grading_app.Adapter
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.grading_app.R
+import com.example.grading_app.model.Student
+
+class StudentAdapter(private val students: List<Student>) :
+    RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
+
+    class StudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val name: TextView = itemView.findViewById(R.id.nameText)
+        val programme: TextView = itemView.findViewById(R.id.programmeText)
+        val subject: TextView = itemView.findViewById(R.id.subjectText)
+        val marks: TextView = itemView.findViewById(R.id.marksText)
+        val grade: TextView = itemView.findViewById(R.id.gradeText)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
+
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_student, parent, false)
+
+        return StudentViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
+
+        val student = students[position]
+
+        holder.name.text = student.name
+        holder.programme.text = student.programme
+        holder.subject.text = student.subject
+        holder.marks.text = student.marks.toString()
+        holder.grade.text = student.grade
+    }
+
+    override fun getItemCount(): Int {
+        return students.size
+    }
+}
