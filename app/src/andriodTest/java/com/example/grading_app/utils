@@ -1,0 +1,35 @@
+package com.example.grading_app.utils
+
+import android.content.Context
+import android.net.Uri
+import com.example.grading_app.model.Student
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+
+fun readStudentsFromExcel(context: Context, fileUri: Uri): List<Student> {
+
+    val students = mutableListOf<Student>()
+
+    val inputStream = context.contentResolver.openInputStream(fileUri)
+    val workbook = XSSFWorkbook(inputStream)
+    val sheet = workbook.getSheetAt(0)
+
+    for (row in sheet) {
+
+        if (row.rowNum == 0) continue
+
+        val name = row.getCell(0)?.stringCellValue ?: ""
+        val programme = row.getCell(1)?.stringCellValue ?: ""
+        val subject = row.getCell(2)?.stringCellValue ?: ""
+        val marks = row.getCell(3)?.numericCellValue?.toInt() ?: 0
+
+        val grade = calculateGrade(marks)
+
+        val student = Student(name, programme, subject, marks, grade)
+
+        students.add(student)
+    }
+
+    workbook.close()
+
+    return students
+}
