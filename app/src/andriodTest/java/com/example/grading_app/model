@@ -1,0 +1,9 @@
+package com.example.grading_app.Model
+
+    data class Student(
+        val name: String,
+        val programme: String,
+        val subject: String,
+        val marks: Int,
+        val grade: String
+    )
