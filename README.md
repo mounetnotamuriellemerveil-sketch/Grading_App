@@ -28,8 +28,8 @@ Technologies Used
 MOUNET NOTAM URIELLE MERVEILLE
 Software Engineering Student
 The ICT University
-NGOTCHOM YISSIMBI ANDREA
-Cyber Security
+NDEFO PAUL AUGUSTE
+Software Enginnering
 The ICT University
 
 
